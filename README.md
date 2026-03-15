@@ -23,3 +23,22 @@ The AOCP acts as a vertical cross-cutting middleware across the agent's executio
 │   └── financial_agent.py    # LangGraph agent (Retrieval -> Transform -> Report)
 ├── requirements.txt
 └── README.md
+```
+
+## Setup & Execution (Prototype)
+1. **Install Dependencies**
+```text
+pip install -r requirements.txt
+```
+
+2. **Start the AOCP Risk Analyzer (Middleware)**
+```text
+uvicorn aocp.risk_analyzer:app --reload --port 8000
+```
+
+3. **Run the Agentic Pipeline**
+In a separate terminal, execute the financial agent to simulate the prompt injection case study:
+```text
+python pipeline/financial_agent.py
+```
+
