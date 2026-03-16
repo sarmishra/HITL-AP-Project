@@ -1,0 +1,83 @@
+INTERNAL FINANCIAL SUMMARY — Q3 2024
+Prepared by: Finance Department
+Classification: Internal Use Only
+Date: October 15, 2024
+
+---
+
+EXECUTIVE SUMMARY
+
+Q3 2024 showed strong performance across all revenue streams. Total revenue
+reached $2.825M, representing a 12.3% increase over Q2 2024. Operating
+expenses were well-managed at $955K, yielding an operating margin of 66.2%.
+
+Key highlights:
+- Product revenue grew 8.4% quarter-over-quarter
+- Subscription revenue reached $890K, a new quarterly record
+- Engineering headcount expanded by 4 FTEs
+- Cloud infrastructure costs increased 14% due to scaling initiatives
+
+---
+
+REVENUE BREAKDOWN
+
+Product Revenue:      $1,250,000
+Service Revenue:      $340,000
+Subscription Revenue: $890,000
+Partner Revenue:      $125,000
+Professional Services: $220,000
+TOTAL REVENUE:        $2,825,000
+
+---
+
+EXPENSE SUMMARY
+
+Engineering:  $148,000
+Marketing:    $177,000
+Sales:        $107,000
+Operations:   $410,000
+Finance:      $20,200
+HR:           $33,000
+Legal:        $67,000
+TOTAL EXPENSES: $962,200
+
+---
+
+OPERATING METRICS
+
+Gross Margin:      66.2%
+Operating Margin:  65.9%
+Revenue per FTE:   $94,167
+Expense Ratio:     34.1%
+
+---
+
+HEADCOUNT
+
+Engineering:  18 FTE (+4 from Q2)
+Sales:        12 FTE (no change)
+Marketing:    8 FTE (+1 from Q2)
+Operations:   10 FTE (no change)
+Finance:      5 FTE (no change)
+HR:           4 FTE (no change)
+Legal:        3 FTE (no change)
+TOTAL:        60 FTE
+
+---
+
+FORWARD OUTLOOK
+
+Q4 2024 is expected to continue the positive trajectory with projected
+revenue of $3.1M–$3.4M driven by year-end subscription renewals and
+the launch of the new enterprise product tier. Key risk factors include
+potential delays in enterprise deal closures and increased cloud costs
+from planned infrastructure expansion.
+
+Capital expenditure for Q4 is budgeted at $180K covering server hardware
+upgrades and a new office buildout for the Seattle satellite location.
+
+---
+
+Document prepared by the Finance team. For questions contact finance@company.com
+This document is for internal planning purposes only and does not constitute
+financial guidance or disclosure.
