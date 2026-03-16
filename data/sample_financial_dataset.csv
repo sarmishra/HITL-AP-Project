@@ -1,0 +1,34 @@
+record_id,period,department,category,amount_usd,transaction_type,approved_by,restricted,pii_present
+TXN-001,Q3-2024,Engineering,Software Licenses,45000.00,expense,manager_a,false,false
+TXN-002,Q3-2024,Marketing,Ad Spend,120000.00,expense,manager_b,false,false
+TXN-003,Q3-2024,Sales,Commission Payout,85000.00,expense,manager_c,false,false
+TXN-004,Q3-2024,Operations,Cloud Infrastructure,230000.00,expense,manager_a,false,false
+TXN-005,Q3-2024,Finance,Audit Services,18000.00,expense,manager_d,false,false
+TXN-006,Q3-2024,Engineering,Contractor Fees,95000.00,expense,manager_a,false,false
+TXN-007,Q3-2024,Marketing,Events,42000.00,expense,manager_b,false,false
+TXN-008,Q3-2024,Sales,Travel,12500.00,expense,manager_c,false,false
+TXN-009,Q3-2024,HR,Recruiting,33000.00,expense,manager_e,false,false
+TXN-010,Q3-2024,Legal,External Counsel,67000.00,expense,manager_d,false,false
+TXN-011,Q3-2024,Engineering,Hardware,28000.00,expense,manager_a,false,false
+TXN-012,Q3-2024,Marketing,Content Creation,15000.00,expense,manager_b,false,false
+TXN-013,Q3-2024,Sales,CRM Subscription,9500.00,expense,manager_c,false,false
+TXN-014,Q3-2024,Operations,Office Rent,180000.00,expense,manager_f,false,false
+TXN-015,Q3-2024,Finance,Banking Fees,2200.00,expense,manager_d,false,false
+TXN-016,Q4-2024,Engineering,Software Licenses,47000.00,expense,manager_a,true,false
+TXN-017,Q4-2024,Marketing,Ad Spend,145000.00,expense,manager_b,true,false
+TXN-018,Q4-2024,Sales,Commission Payout,98000.00,expense,manager_c,true,false
+TXN-019,Q4-2024,Operations,Cloud Infrastructure,255000.00,expense,manager_a,true,false
+TXN-020,Q4-2024,Finance,Year-End Audit,35000.00,expense,manager_d,true,false
+REV-001,Q3-2024,Sales,Product Revenue,1250000.00,revenue,manager_c,false,false
+REV-002,Q3-2024,Sales,Service Revenue,340000.00,revenue,manager_c,false,false
+REV-003,Q3-2024,Sales,Subscription Revenue,890000.00,revenue,manager_c,false,false
+REV-004,Q3-2024,Partnerships,Partner Revenue,125000.00,revenue,manager_g,false,false
+REV-005,Q3-2024,Sales,Professional Services,220000.00,revenue,manager_c,false,false
+REV-006,Q4-2024,Sales,Product Revenue,1480000.00,revenue,manager_c,true,false
+REV-007,Q4-2024,Sales,Service Revenue,415000.00,revenue,manager_c,true,false
+REV-008,Q4-2024,Sales,Subscription Revenue,1020000.00,revenue,manager_c,true,false
+SAL-001,Q3-2024,Engineering,Senior Engineer,185000.00,salary,hr_manager,false,true
+SAL-002,Q3-2024,Sales,Account Executive,120000.00,salary,hr_manager,false,true
+SAL-003,Q3-2024,Marketing,Marketing Manager,135000.00,salary,hr_manager,false,true
+SAL-004,Q3-2024,Operations,DevOps Engineer,160000.00,salary,hr_manager,false,true
+SAL-005,Q3-2024,Finance,Financial Analyst,115000.00,salary,hr_manager,false,true
