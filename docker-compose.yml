@@ -1,0 +1,115 @@
+version: "3.8"
+
+# ============================================================
+# HITL-AP Docker Compose — Infrastructure Services
+#
+# Starts: PostgreSQL (Audit Logger), RabbitMQ (Escalation Manager),
+#         Open Policy Agent (Policy Engine)
+#
+# Usage:
+#   docker-compose up -d          # Start all services
+#   docker-compose down           # Stop all services
+#   docker-compose logs -f        # Follow logs
+# ============================================================
+
+services:
+
+  # ─── PostgreSQL — Audit Logger ─────────────────────────────
+  postgres:
+    image: postgres:14-alpine
+    container_name: hitlap_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       hitlap
+      POSTGRES_USER:     hitlap
+      POSTGRES_PASSWORD: hitlap_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - hitlap_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hitlap -d hitlap"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── RabbitMQ — Escalation Manager ─────────────────────────
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: hitlap_rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+      - "5672:5672"     # AMQP protocol
+      - "15672:15672"   # Management UI (http://localhost:15672)
+    volumes:
+      - hitlap_rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+
+  # ─── Open Policy Agent — Policy Engine ──────────────────────
+  opa:
+    image: openpolicyagent/opa:latest-rootless
+    container_name: hitlap_opa
+    restart: unless-stopped
+    ports:
+      - "8181:8181"
+    command:
+      - "run"
+      - "--server"
+      - "--addr=0.0.0.0:8181"
+      - "--log-level=info"
+      - "--log-format=json"
+      - "/policies"
+    volumes:
+      - ./aocp/policies:/policies:ro
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1",
+             "--spider", "http://localhost:8181/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── AOCP Risk Analyzer ─────────────────────────────────────
+  risk_analyzer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hitlap_risk_analyzer
+    restart: unless-stopped
+    environment:
+      OPA_URL:            http://opa:8181
+      DATABASE_URL:       postgresql://hitlap:hitlap_dev@postgres:5432/hitlap
+      RABBITMQ_URL:       amqp://guest:guest@rabbitmq:5672/
+      AOCP_HMAC_SECRET:   ${AOCP_HMAC_SECRET:-change_this_in_production}
+      AOCP_MODE:          ${AOCP_MODE:-hybrid}
+      AOCP_RISK_THRESHOLD: ${AOCP_RISK_THRESHOLD:-0.70}
+      LOG_LEVEL:          ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      opa:
+        condition: service_healthy
+    command: uvicorn aocp.risk_analyzer:app --host 0.0.0.0 --port 8000
+
+# ─── Volumes ──────────────────────────────────────────────────
+volumes:
+  hitlap_postgres_data:
+    driver: local
+  hitlap_rabbitmq_data:
+    driver: local
+
+# ─── Networks ─────────────────────────────────────────────────
+networks:
+  default:
+    name: hitlap_network
