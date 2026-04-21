@@ -12,12 +12,13 @@ This repository contains the reference implementation of the **HITL-AP framework
 If you use HITL-AP in your research, please cite:
 
 ```bibtex
-@article{hitlap2025,
-  title     = {Trustworthy Agentic AI Pipelines: Human-in-the-Loop Oversight
-               Architectures for Secure Enterprise Deployment},
-  author    = {[Author Names]},
-  journal   = {[Venue]},
-  year      = {2025},
+@misc{mishra2026trustworthy,
+  author       = {Mishra, Saroj},
+  title        = {Trustworthy Agentic {AI} Pipelines: Human-in-the-Loop 
+                  Oversight Architectures for Secure Enterprise Deployment},
+  year         = {2026},
+  howpublished = {ResearchGate preprint},
+  note         = {Submitted to IEEE COINS 2026},
   url       = {https://github.com/sarmishra/HITL-AP-Project}
 }
 ```
