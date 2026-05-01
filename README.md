@@ -7,19 +7,20 @@ This repository contains the reference implementation of the **HITL-AP framework
 
 ---
 
-## Citation
+## 📄 Citation
 
-If you use HITL-AP in your research, please cite:
+If you use this work, please cite:
 
 ```bibtex
-@misc{mishra2026trustworthy,
+@misc{mishra2026hitlap,
   author       = {Mishra, Saroj},
-  title        = {Trustworthy Agentic {AI} Pipelines: Human-in-the-Loop 
-                  Oversight Architectures for Secure Enterprise Deployment},
+  title        = {Trustworthy Agentic {AI} Pipelines:
+                  Human-in-the-Loop Oversight Architectures
+                  for Secure Enterprise Deployment},
   year         = {2026},
   howpublished = {ResearchGate preprint},
-  note         = {Submitted to IEEE COINS 2026},
-  url       = {https://github.com/sarmishra/HITL-AP-Project}
+  doi          = {10.13140/RG.2.2.23100.50564},
+  note         = {Submitted to IEEE COINS 2026}
 }
 ```
 
@@ -60,6 +61,52 @@ L6: Execution Sandbox            ← Isolated execution, rollback capability
     ▼
 L7: Monitoring & Audit Layer     ← AOCP Audit Logger (ACS metric captured)
 ```
+
+---
+
+## 📊 Evaluation Results (N=50 executions per system)
+
+| System | RTC (%) | IL (ms) | ACS (%) |
+| --- | --- | --- | --- |
+| AutoGen (baseline) | 24.2 ± 6.5 | N/A | 0.0 ± 0.0 |
+| LangGraph (baseline) | 48.6 ± 8.2 | N/A | 0.0 ± 0.0 |
+| CrewAI (baseline) | 36.4 ± 5.1 | N/A | 0.0 ± 0.0 |
+| **HITL-AP + AOCP** | **98.5 ± 1.2** | **142.3 ± 18.5** | **100.0 ± 0.0** |
+
+AOCP programmatic latency: median 142ms, p95 = 186ms, p99 = 212ms  
+RTC differences statistically significant (Welch's t-test, p < 0.01)
+
+### Safety Efficacy (N=50 adversarial cases)
+| Metric | Result |
+| --- | --- |
+| Adversarial Interception Rate (TPR) | 94.0% |
+| Benign Escalation Rate (FPR) | 4.2% |
+| Median Human Review Time | 18.5 sec |
+| AOCP p95 Programmatic Latency | 186.2 ms |
+
+---
+
+## 📐 Oversight Metrics
+
+| Metric | Definition | Target |
+| --- | --- | --- |
+| **RTC** — Reasoning Trace Completeness | % of decisions with verifiable pre-execution reasoning trace | > 95% |
+| **IL** — Intervention Latency | Programmatic overhead from AOCP trigger to decision receipt (ms), excluding human deliberation | < 200ms |
+| **ACS** — Audit Coverage Score | % of pipeline events stored in cryptographically signed, tamper-evident log | 100% |
+
+> **Note:** ACS evaluates cryptographic, append-only audit guarantees — not mere logging presence. Baselines score 0% because their native logs are mutable and unsigned.
+
+
+---
+
+## 🏛️ NIST AI RMF Alignment
+
+| Function | HITL-AP Coverage |
+| --- | --- |
+| **GOVERN** | AOCP Policy Engine provides formal, auditable governance rules; version-controlled and access-restricted |
+| **MAP** | Pipeline-stage risk taxonomy maps risk categories to specific architectural layers |
+| **MEASURE** | RTC, IL, ACS provide quantitative measurement of oversight effectiveness |
+| **MANAGE** | L4 Risk Analyzer blocks violations, L5 manages escalations, L7 provides immutable audit records |
 
 ---
 
@@ -269,6 +316,19 @@ pytest tests/ -v
 - The `AOCP_HMAC_SECRET` should be a cryptographically random string (minimum 32 characters)
 - In production, manage secrets via a secrets manager (AWS Secrets Manager, HashiCorp Vault, etc.)
 - The Audit Logger uses append-only semantics — direct database modification requires bypassing application controls
+
+---
+
+## ⚙️ AOCP Deployment Modes
+
+Set via `AOCP_MODE` environment variable:
+
+| Mode | Behavior | Use Case |
+| --- | --- | --- |
+| `inline` | Blocks execution pending human decision | Maximum safety; irreversible actions |
+| `advisory` | Flags without blocking | High-throughput routine tasks |
+| `hybrid` (default) | Inline for critical-tier; advisory for routine | **Recommended enterprise deployment** |
+
 
 ---
 
