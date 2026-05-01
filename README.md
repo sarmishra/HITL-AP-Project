@@ -203,32 +203,6 @@ opa run --server --addr :8181 aocp/policies/
 
 ---
 
-## Oversight Metrics (RTC, IL, ACS)
-
-This implementation measures the three oversight metrics formally defined in the paper:
-
-### Reasoning Trace Completeness (RTC)
-Percentage of agent decisions that include a **complete** reasoning trace. A trace is counted as complete only if it satisfies all three criteria:
-1. Explicitly identifies the specific tool or action selected and its intended purpose
-2. Provides a justification referencing at least one input constraint, policy rule, or environmental condition
-3. Is recorded **before** execution (not reconstructed post-hoc)
-
-```
-RTC = (Decisions with complete trace / Total decisions) × 100
-```
-
-### Intervention Latency (IL)
-Programmatic overhead of the AOCP routing mechanism — from risk trigger detection to queue delivery and decision receipt. **Excludes human deliberation time** (unbounded and task-dependent). Target: <200ms.
-
-### Audit Coverage Score (ACS)
-Percentage of pipeline events captured in a tamper-evident, cryptographically signed audit log. Pipeline events include: prompt generations, intermediate reasoning steps, active retrieval queries, and external tool invocations. Target: 100%.
-
-```
-ACS = (Successfully logged events / Total pipeline events) × 100
-```
-
----
-
 ## Reproducing the Paper Evaluation (Table V)
 
 The evaluation compares HITL-AP against AutoGen, LangGraph, and CrewAI across 50 task executions per system.
@@ -271,18 +245,6 @@ Expected output (with AOCP):
 [L7] Audit Logger: Full traversal cryptographically appended (hash: <sha256>)
 [RESULT] Data exfiltration PREVENTED
 ```
-
----
-
-## AOCP Deployment Modes
-
-Configure via `AOCP_MODE` environment variable:
-
-| Mode | Behavior | Use Case |
-|---|---|---|
-| `inline` | Blocks agent execution pending human decision | High-stakes, irreversible actions |
-| `advisory` | Flags for review without blocking | Routine, low-risk tasks |
-| `hybrid` | Inline for CRITICAL/HIGH, advisory for MEDIUM/LOW | **Recommended default** |
 
 ---
 
