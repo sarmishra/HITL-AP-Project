@@ -55,7 +55,7 @@ services:
 
   # ─── Open Policy Agent — Policy Engine ──────────────────────
   opa:
-    image: openpolicyagent/opa:latest-rootless
+    image: openpolicyagent/opa:0.68.0-rootless
     container_name: hitlap_opa
     restart: unless-stopped
     ports:
