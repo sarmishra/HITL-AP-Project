@@ -124,7 +124,7 @@ RTC differences statistically significant (Welch's t-test, p < 0.01)
 ├── pipeline/
 │   └── financial_agent.py        # LangGraph agent (Retrieval → Transform → Report)
 ├── evaluation/
-│   └── run_evaluation.py         # Reproduce Table V results (RTC, IL, ACS)
+│   └── run_evaluation.py         # Reproduce Table IV results (RTC, IL, ACS)
 ├── data/
 │   ├── sample_financial_dataset.csv   # Synthetic financial records
 │   ├── malicious_document.txt         # Prompt injection case study input
@@ -203,15 +203,15 @@ opa run --server --addr :8181 aocp/policies/
 
 ---
 
-## Reproducing the Paper Evaluation (Table V)
+## Reproducing the Paper Evaluation (Table IV)
 
 The evaluation compares HITL-AP against AutoGen, LangGraph, and CrewAI across 50 task executions per system.
 
 ```bash
-# Run evaluation for all systems (reproduces Table V)
+# Run evaluation for all systems (reproduces Table IV)
 python evaluation/run_evaluation.py --system hitlap --runs 50
 python evaluation/run_evaluation.py --system autogen --runs 50
-python evaluation/run_evaluation.py --system langchain --runs 50
+python evaluation/run_evaluation.py --system langgraph --runs 50
 python evaluation/run_evaluation.py --system crewai --runs 50
 
 # Results saved to: evaluation/results/
@@ -222,7 +222,7 @@ Each run consists of a multi-step workflow: dataset retrieval → data transform
 
 ---
 
-## Running the Prompt Injection Case Study (Section VII-B)
+## Running the Prompt Injection Case Study (Section VII-A)
 
 This demonstrates AOCP interception of an indirect prompt injection attack targeting the SMTP tool for data exfiltration.
 
