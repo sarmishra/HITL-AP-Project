@@ -1,7 +1,7 @@
 """
 evaluation/run_evaluation.py
 ============================
-Reproduces Table V from:
+Reproduces Table IV from:
 "Trustworthy Agentic AI Pipelines: Human-in-the-Loop Oversight
  Architectures for Secure Enterprise Deployment"
 
@@ -362,7 +362,7 @@ def save_results(stats: dict, results: list, system: str):
 
 
 def print_results(stats: dict):
-    """Print formatted results matching Table V from the paper."""
+    """Print formatted results matching Table IV from the paper."""
     system = stats["system"].upper()
     rtc    = f"{stats['rtc_mean']:.1f} ± {stats['rtc_std']:.1f}"
     il     = f"{stats['il_mean']:.1f} ± {stats['il_std']:.1f}" if stats["il_mean"] else "N/A (no formal HITL)"
@@ -380,7 +380,7 @@ def print_results(stats: dict):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Reproduce HITL-AP Table V evaluation results"
+        description="Reproduce HITL-AP Table IV evaluation results"
     )
     parser.add_argument(
         "--system",
@@ -401,4 +401,4 @@ if __name__ == "__main__":
     save_results(stats, results, args.system)
 
     print(f"\n  Evaluation complete. {args.runs} runs finished.")
-    print(f"  To reproduce full Table V, run all four systems with --runs 50\n")
+    print(f"  To reproduce full Table IV, run all four systems with --runs 50\n")
