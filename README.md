@@ -14,13 +14,13 @@ If you use this work, please cite:
 ```bibtex
 @inproceedings{mishra2026hitlap,
   author    = {Mishra, Saroj},
-  title     = {Trustworthy Agentic {AI} Pipelines:
+  title     = {Trustworthy Agentic AI Pipelines:
                Human-in-the-Loop Oversight Architectures
                for Secure Enterprise Deployment},
-  booktitle = {Proceedings of the IEEE International Conference
-               on Omni-layer Intelligent Systems (COINS)},
+  booktitle = {IEEE International Conference on
+               Omni-Layer Intelligent Systems (COINS)},
   year      = {2026},
-  note      = {to appear}
+  note      = {Accepted for presentation; proceedings forthcoming}
 }
 ```
 
